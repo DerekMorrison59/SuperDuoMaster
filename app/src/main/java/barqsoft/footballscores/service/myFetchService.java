@@ -39,10 +39,10 @@ public class myFetchService extends IntentService
     @Override
     protected void onHandleIntent(Intent intent)
     {
-        getData("n2");
+        // changed the call to get current & future data from "n2" to "n3" to ensure
+        // that we get matches for today plus 2 days into the future
+        getData("n3");
         getData("p2");
-
-        return;
     }
 
     private void getData (String timeFrame)
@@ -178,6 +178,7 @@ public class myFetchService extends IntentService
         try {
             JSONArray matches = new JSONObject(JSONdata).getJSONArray(FIXTURES);
 
+            int unusedMatches = 0;
 
             //ContentValues to be inserted
             Vector<ContentValues> values = new Vector <ContentValues> (matches.length());
@@ -258,14 +259,49 @@ public class myFetchService extends IntentService
 
                     values.add(match_values);
                 }
+                else
+                {
+                    unusedMatches++;
+                }
             }
             int inserted_data = 0;
             ContentValues[] insert_data = new ContentValues[values.size()];
             values.toArray(insert_data);
-            inserted_data = mContext.getContentResolver().bulkInsert(
-                    DatabaseContract.BASE_CONTENT_URI,insert_data);
 
-            //Log.v(LOG_TAG,"Succesfully Inserted : " + String.valueOf(inserted_data));
+            // BUG FIXED: the old code did not delete database entries that had expired
+            // Any match that is older than 2 days ago is not display and should
+            // therefore be deleted from the database
+
+            // remove database entries that are too old to be displayed
+            // that means any row where the date is before 2 days ago
+            int deleted_rows;
+
+            // create a date string for 2 days ago
+            Date cutoffDate = new Date(System.currentTimeMillis()-(2*86400000));
+            SimpleDateFormat mformat = new SimpleDateFormat("yyyy-MM-dd");
+            String cutDate = mformat.format(cutoffDate);
+
+
+            String scoreColumns = DatabaseContract.scores_table.DATE_COL + "<?";
+            String[] scoreSpecs = {cutDate};
+
+            // delete all non-favorites of this 'sort-type' in the database
+            deleted_rows = mContext.getContentResolver().delete(
+                    DatabaseContract.BASE_CONTENT_URI,
+                    scoreColumns,
+                    scoreSpecs
+            );
+
+            //Log.v(LOG_TAG,"Deleted Rows : " + String.valueOf(deleted_rows));
+
+
+            // only call insert if there are new items to insert
+            if (insert_data.length > 0) {
+                inserted_data = mContext.getContentResolver().bulkInsert(
+                        DatabaseContract.BASE_CONTENT_URI, insert_data);
+                //Log.v(LOG_TAG,"Succesfully Inserted : " + String.valueOf(inserted_data));
+            }
+            //Log.v(LOG_TAG,"Unused Matches : " + String.valueOf(unusedMatches));
         }
         catch (JSONException e)
         {
