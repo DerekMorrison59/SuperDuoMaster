@@ -165,6 +165,20 @@ public class ScoresProvider extends ContentProvider
 
     @Override
     public int delete(Uri uri, String selection, String[] selectionArgs) {
-        return 0;
+        final SQLiteDatabase db = mOpenHelper.getWritableDatabase();
+        final int match = match_uri(uri);
+        int rowsDeleted = 0;
+
+        // this makes delete all rows return the number of rows deleted
+        if ( null == selection ) selection = "1";
+
+        rowsDeleted = db.delete(
+                DatabaseContract.SCORES_TABLE, selection, selectionArgs);
+
+        if (rowsDeleted != 0) {
+            getContext().getContentResolver().notifyChange(uri, null);
+        }
+
+        return rowsDeleted;
     }
 }
