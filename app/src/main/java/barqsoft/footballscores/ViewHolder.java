@@ -15,7 +15,10 @@ public class ViewHolder
     public TextView date;
     public ImageView home_crest;
     public ImageView away_crest;
-    public double match_id;
+
+    // ERROR - the match_id was previously declared as a double but must be an int
+    public int match_id;
+
     public ViewHolder(View view)
     {
         home_name = (TextView) view.findViewById(R.id.home_name);
