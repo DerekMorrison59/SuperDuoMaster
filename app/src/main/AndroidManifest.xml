@@ -2,9 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="barqsoft.footballscores" >
 
-    <uses-permission
-        android:name="android.permission.INTERNET"
-        android:maxSdkVersion="22" />
+    <!-- ERROR - this reference to <<< android:maxSdkVersion="22" >>> is incorrect -->
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -17,7 +16,6 @@
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -28,13 +26,48 @@
 
         <activity
             android:name=".AboutActivity"
-            android:label="About"
+            android:label="@string/about_label"
             android:parentActivityName=".MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="barqsoft.footballscores.MainActivity" />
         </activity>
-        <service android:name=".service.myFetchService" />
+        <service android:name=".service.FetchScoresService" />
+        <!-- Today Widget -->
+        <receiver
+            android:name=".widget.TodayWidgetProvider"
+            android:contentDescription="@string/next_football_match"
+            android:label="@string/next_football_match">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="barqsoft.footballscores.app.ACTION_DATA_UPDATED" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_info_today" />
+        </receiver>
+        <service android:name=".widget.TodayWidgetIntentService" />
+        <!-- Score List Widget -->
+        <receiver
+            android:name=".widget.ScoreListWidgetProvider"
+            android:enabled="true"
+            >
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="barqsoft.footballscores.app.ACTION_DATA_UPDATED" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_score_list" />
+        </receiver>
+
+        <service
+            android:name=".widget.ScoreListWidgetRemoteViewsService"
+            android:enabled="true"
+            android:exported="false"
+            android:permission="android.permission.BIND_REMOTEVIEWS" />
+
     </application>
 
 </manifest>
