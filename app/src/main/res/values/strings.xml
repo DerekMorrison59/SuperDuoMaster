@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">AlexBooks</string>
     <string name="action_settings">Settings</string>
+    <string name="title_activity_book_search">BookSearch</string>
+    <string name="title_activity_book_add">BookAdd</string>
+    <string name="title_activity_book_details">BookDetails</string>
+    <string name="title_activity_alex_about">AlexAbout</string>
 </resources>
