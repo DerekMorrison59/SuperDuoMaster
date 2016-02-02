@@ -2,9 +2,16 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.derekmorrison.alexbooks">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
@@ -17,15 +24,6 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity
-            android:name=".BookSearch"
-            android:label="@string/title_activity_book_search"
-            android:parentActivityName=".MainActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.derekmorrison.alexbooks.MainActivity" />
         </activity>
         <activity
             android:name=".BookAdd"
@@ -54,6 +52,17 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.derekmorrison.alexbooks.MainActivity" />
         </activity>
+
+        <provider
+            android:name=".data.BookProvider"
+            android:authorities="com.derekmorrison.alexbooks"
+            android:exported="false" />
+
+        <service
+            android:name=".services.BookService"
+            android:exported="false">
+        </service>
+
     </application>
 
 </manifest>
