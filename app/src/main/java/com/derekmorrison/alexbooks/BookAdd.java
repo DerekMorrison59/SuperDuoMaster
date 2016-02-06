@@ -223,7 +223,7 @@ public class BookAdd extends AppCompatActivity  implements LoaderManager.LoaderC
         // use IntentIntegrator to invoke the ZXing scan library
         IntentIntegrator integrator = new IntentIntegrator(this);
         integrator.setDesiredBarcodeFormats(IntentIntegrator.ONE_D_CODE_TYPES);
-        integrator.setPrompt("Scan a barcode");
+        integrator.setPrompt(getString(R.string.scan_instruction));
         integrator.setBeepEnabled(true);
         integrator.setBarcodeImageEnabled(true);
         integrator.initiateScan();
@@ -253,6 +253,4 @@ public class BookAdd extends AppCompatActivity  implements LoaderManager.LoaderC
                 break;
         }
     }
-
-
 }

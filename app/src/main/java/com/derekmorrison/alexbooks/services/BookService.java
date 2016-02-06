@@ -142,7 +142,7 @@ public class BookService extends IntentService {
             }
             bookJsonString = buffer.toString();
         } catch (Exception e) {
-            Log.e(LOG_TAG, "Error ", e);
+            Log.e(LOG_TAG, getString(R.string.error_tag), e);
         } finally {
             if (urlConnection != null) {
                 urlConnection.disconnect();
@@ -151,7 +151,7 @@ public class BookService extends IntentService {
                 try {
                     reader.close();
                 } catch (final IOException e) {
-                    Log.e(LOG_TAG, "Error closing stream", e);
+                    Log.e(LOG_TAG, getString(R.string.error_closing_stream), e);
                 }
             }
         }
@@ -213,7 +213,7 @@ public class BookService extends IntentService {
             }
 
         } catch (JSONException e) {
-            Log.e(LOG_TAG, "Error ", e);
+            Log.e(LOG_TAG, getString(R.string.error_tag), e);
         }
     }
 

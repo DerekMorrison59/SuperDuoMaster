@@ -43,7 +43,7 @@ public class BookListAdapter extends CursorAdapter {
 
         String imgUrl = cursor.getString(cursor.getColumnIndex(AlexandriaContract.BookEntry.IMAGE_URL));
 
-        if (imgUrl.isEmpty()) {
+        if (null == imgUrl || imgUrl.isEmpty()) {
             viewHolder.bookCover.setImageResource(R.drawable.alex_logo);
         } else {
             Picasso

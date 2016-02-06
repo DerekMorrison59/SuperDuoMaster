@@ -95,6 +95,8 @@ public class BookDetailsFragment extends Fragment implements LoaderManager.Loade
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        final String intentType = "text/plain";
+
         inflater.inflate(R.menu.menu_book_details, menu);
 
         MenuItem menuItem = menu.findItem(R.id.action_share);
@@ -108,7 +110,7 @@ public class BookDetailsFragment extends Fragment implements LoaderManager.Loade
 
             Intent shareIntent = new Intent(Intent.ACTION_SEND);
             shareIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_DOCUMENT);
-            shareIntent.setType("text/plain");
+            shareIntent.setType(intentType);
             shareIntent.putExtra(Intent.EXTRA_TEXT, getString(R.string.share_text) + " " + bookTitle);
             mShareActionProvider.setShareIntent(shareIntent);
         }
@@ -173,6 +175,7 @@ public class BookDetailsFragment extends Fragment implements LoaderManager.Loade
     @Override
     public void onLoaderReset(android.support.v4.content.Loader<Cursor> loader) {
 
+        // clear all the text fields and the book cover
         ((TextView) rootView.findViewById(R.id.fullBookTitle)).setText("");
         ((TextView) rootView.findViewById(R.id.authors)).setText("");
         ((TextView) rootView.findViewById(R.id.categories)).setText("");
@@ -185,5 +188,4 @@ public class BookDetailsFragment extends Fragment implements LoaderManager.Loade
                 .error(R.drawable.alex_logo)
                 .into(iView);
     }
-
 }
