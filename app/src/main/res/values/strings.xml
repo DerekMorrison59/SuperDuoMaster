@@ -39,6 +39,19 @@
     <string name="books_showing">"Books Showing: "</string>
     <string name="book_cover_description">Book Cover</string>
     <string name="drawer_header_text">AlexBooks</string>
+    <string name="menu_home">Home</string>
+    <string name="menu_add_book">Add a Book</string>
+    <string name="menu_about">About</string>
+    <string name="sub_menu_home">Show all books</string>
+    <string name="sub_menu_add_book">Enter ISBN or scan UPC</string>
+    <string name="dialog_search_title">Enter Seach Word</string>
+    <string name="dialog_ok">OK</string>
+    <string name="dialog_cancel">Cancel</string>
+    <string name="scan_instruction">Scan a barcode</string>
+    <string name="error_closing_stream">Error closing stream</string>
+    <string name="error_tag">"Error "</string>
+    <string name="error_unknown_uri">"Unknown uri: "</string>
+    <string name="error_failed_to_insert">"Failed to insert row into "</string>
 
 
 </resources>
