@@ -1,8 +1,44 @@
 <resources>
     <string name="app_name">AlexBooks</string>
     <string name="action_settings">Settings</string>
-    <string name="title_activity_book_search">BookSearch</string>
-    <string name="title_activity_book_add">BookAdd</string>
-    <string name="title_activity_book_details">BookDetails</string>
-    <string name="title_activity_alex_about">AlexAbout</string>
+    <string name="title_activity_book_search">Book Search</string>
+    <string name="title_activity_book_add">Add or Scan a Book</string>
+    <string name="title_activity_book_details">Book Details</string>
+    <string name="title_activity_alex_about">About AlexBooks</string>
+
+    <string name="about_text1">This application gets book information from a free API provided by Google.
+        All titles, cover images, and author information come from the Google API.</string>
+    <string name="about_text2">The original version of this app (Alexandria) was built by Sascha Jaschke
+        and a modified version is given to students in the Udacity Android Nanodegree program. </string>
+    <string name="about_text3">Add books to this app using the Add Book button, then either enter the 13 digit ISBN
+        or use the Scan button and the camera to read the bar code on the book.
+        View book details by tapping a card in the list. Search for a book by entering any word in the title</string>
+
+
+    <string name="scan_button">Scan</string>
+    <string name="input_hint">Enter the ISBN-13 (Digits only)</string>
+    <string name="book_cover">Bookcover</string>
+
+    <string name="ok_button">Next</string>
+    <string name="cancel_button">Cancel</string>
+    <string name="button_save">Save</string>
+    <string name="button_delete">Delete</string>
+
+    <string name="not_found">No Book found</string>
+    <string name="search">Search</string>
+    <string name="delete">Delete Book</string>
+    <string name="pref_startScreen">Select Startscreen</string>
+    <string name="title_activity_settings">Settings</string>
+    <string name="action_share">Share</string>
+    <string name="back_button">go back</string>
+    <string name="share_text">A must read book: </string>
+    <string name="no_books_found">No Books Found in the Database</string>
+    <string name="no_internet_connection">No Internet Connection</string>
+    <string name="no_response_from_server">No Response From Server</string>
+    <string name="title_activity_book_scan">BookScan</string>
+    <string name="books_showing">"Books Showing: "</string>
+    <string name="book_cover_description">Book Cover</string>
+    <string name="drawer_header_text">AlexBooks</string>
+
+
 </resources>
