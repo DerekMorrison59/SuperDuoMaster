@@ -9,6 +9,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteQueryBuilder;
 import android.net.Uri;
 
+import com.derekmorrison.alexbooks.R;
+
 /**
  * Created by saj on 24/12/14.
  */
@@ -170,7 +172,7 @@ public class BookProvider extends ContentProvider {
                         sortOrder);
                 break;
             default:
-                throw new UnsupportedOperationException("Unknown uri: " + uri);
+                throw new UnsupportedOperationException(getContext().getString(R.string.error_unknown_uri) + uri);
         }
 
         retCursor.setNotificationUri(getContext().getContentResolver(), uri);
@@ -200,7 +202,7 @@ public class BookProvider extends ContentProvider {
             case CATEGORY:
                 return AlexandriaContract.CategoryEntry.CONTENT_TYPE;
             default:
-                throw new UnsupportedOperationException("Unknown uri: " + uri);
+                throw new UnsupportedOperationException(getContext().getString(R.string.error_unknown_uri) + uri);
         }
     }
 
@@ -215,7 +217,7 @@ public class BookProvider extends ContentProvider {
                 if ( _id > 0 ){
                     returnUri = AlexandriaContract.BookEntry.buildBookUri(_id);
                 } else {
-                    throw new android.database.SQLException("Failed to insert row into " + uri);
+                    throw new android.database.SQLException(getContext().getString(R.string.error_failed_to_insert) + uri);
                 }
                 getContext().getContentResolver().notifyChange(AlexandriaContract.BookEntry.buildFullBookUri(_id), null);
                 break;
@@ -225,7 +227,7 @@ public class BookProvider extends ContentProvider {
                 if ( _id > 0 )
                     returnUri = AlexandriaContract.AuthorEntry.buildAuthorUri(values.getAsLong("_id"));
                 else
-                    throw new android.database.SQLException("Failed to insert row into " + uri);
+                    throw new android.database.SQLException(getContext().getString(R.string.error_failed_to_insert) + uri);
                 break;
             }
             case CATEGORY: {
@@ -233,11 +235,11 @@ public class BookProvider extends ContentProvider {
                 if (_id > 0)
                     returnUri = AlexandriaContract.CategoryEntry.buildCategoryUri(values.getAsLong("_id"));
                 else
-                    throw new android.database.SQLException("Failed to insert row into " + uri);
+                    throw new android.database.SQLException(getContext().getString(R.string.error_failed_to_insert) + uri);
                 break;
             }
             default:
-                throw new UnsupportedOperationException("Unknown uri: " + uri);
+                throw new UnsupportedOperationException(getContext().getString(R.string.error_unknown_uri) + uri);
         }
         return returnUri;
     }
@@ -267,7 +269,7 @@ public class BookProvider extends ContentProvider {
                         selectionArgs);
                 break;
             default:
-                throw new UnsupportedOperationException("Unknown uri: " + uri);
+                throw new UnsupportedOperationException(getContext().getString(R.string.error_unknown_uri) + uri);
         }
         // Because a null deletes all rows
         if (selection == null || rowsDeleted != 0) {
@@ -296,7 +298,7 @@ public class BookProvider extends ContentProvider {
                 break;
 
             default:
-                throw new UnsupportedOperationException("Unknown uri: " + uri);
+                throw new UnsupportedOperationException(getContext().getString(R.string.error_unknown_uri) + uri);
         }
         if (rowsUpdated != 0) {
             getContext().getContentResolver().notifyChange(uri, null);
