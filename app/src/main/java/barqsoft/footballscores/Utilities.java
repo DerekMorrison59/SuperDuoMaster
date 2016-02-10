@@ -1,6 +1,8 @@
 package barqsoft.footballscores;
 
 import android.content.Context;
+import android.content.res.Configuration;
+import android.support.v4.view.ViewCompat;
 import android.text.format.Time;
 
 import java.text.SimpleDateFormat;
@@ -8,24 +10,52 @@ import java.text.SimpleDateFormat;
 /**
  * Created by yehya khaled on 3/3/2015.
  */
-public class Utilies
+public class Utilities
 {
-    public static final int SERIE_A = 357;
-    public static final int PREMIER_LEGAUE = 354;
+    // FIXED - updated the league numbers
+    public static final int BUNDESLIGA1 = 394;
+    public static final int BUNDESLIGA2 = 395;
+    public static final int LIGUE1 = 396;
+    public static final int LIGUE2 = 397;
+    public static final int PREMIER_LEAGUE = 398;
+    public static final int PRIMERA_DIVISION = 399;
+    public static final int SEGUNDA_DIVISION = 400;
+    public static final int SERIE_A = 401;
+    public static final int PRIMERA_LIGA = 402;
+    public static final int BUNDESLIGA3 = 403;
+    public static final int EREDIVISIE = 404;
     public static final int CHAMPIONS_LEAGUE = 362;
-    public static final int PRIMERA_DIVISION = 358;
-    public static final int BUNDESLIGA = 351;
 
     public static String getLeague(Context context, int league_num)
     {
         switch (league_num)
         {
-            case SERIE_A : return "Seria A";
-            case PREMIER_LEGAUE : return "Premier League";
-            case CHAMPIONS_LEAGUE : return "UEFA Champions League";
-            case PRIMERA_DIVISION : return "Primera Division";
-            case BUNDESLIGA : return "Bundesliga";
-            default: return context.getString(R.string.unknown_league_error_msg);
+            case CHAMPIONS_LEAGUE:
+                return context.getString(R.string.champions_league);
+            case SERIE_A:
+                return context.getString(R.string.seriaa);
+            case PREMIER_LEAGUE:
+                return context.getString(R.string.premierleague);
+            case PRIMERA_DIVISION:
+                return context.getString(R.string.primeradivison);
+            case BUNDESLIGA1:
+                return context.getString(R.string.bundesliga1);
+            case BUNDESLIGA2:
+                return context.getString(R.string.bundesliga2);
+            case BUNDESLIGA3:
+                return context.getString(R.string.bundesliga3);
+            case LIGUE1:
+                return context.getString(R.string.ligue1);
+            case LIGUE2:
+                return context.getString(R.string.ligue2);
+            case SEGUNDA_DIVISION:
+                return context.getString(R.string.segunda_division);
+            case PRIMERA_LIGA:
+                return context.getString(R.string.primera_liga);
+            case EREDIVISIE:
+                return context.getString(R.string.eredivise);
+            default:
+                return context.getString(R.string.unknown_league_error_msg);
         }
     }
     public static String getMatchDay(Context context, int match_day,int league_num)
@@ -59,7 +89,25 @@ public class Utilies
         }
     }
 
-    public static String getScores(int home_goals,int awaygoals)
+    public static String getScoresDisplay(Context context, int home_goals, int awaygoals)
+    {
+        if(home_goals < 0 || awaygoals < 0)
+        {
+            return " - ";
+        }
+        else
+        {
+            Configuration config = context.getResources().getConfiguration();
+
+            if (config.getLayoutDirection() == ViewCompat.LAYOUT_DIRECTION_RTL){
+                return String.valueOf(awaygoals) + " - " + String.valueOf(home_goals);
+            } else {
+                return String.valueOf(home_goals) + " - " + String.valueOf(awaygoals);
+            }
+        }
+    }
+
+    public static String getScoresVoice(int home_goals, int awaygoals)
     {
         if(home_goals < 0 || awaygoals < 0)
         {
@@ -137,4 +185,9 @@ public class Utilies
         }
     }
 
+    public static long getDateFromOffset(int dayOffset){
+        final long MILLI_DAY = 86400000;
+
+        return System.currentTimeMillis() + dayOffset * MILLI_DAY;
+    }
 }
