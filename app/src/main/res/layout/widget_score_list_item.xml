@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/widget_score_list_item_container"
+    android:focusable="false"
+    android:focusableInTouchMode="false"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:baselineAligned="true"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            tools:ignore="UseCompoundDrawables">
+
+            <ImageView
+                android:id="@+id/widget_score_list_item_home_crest"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:contentDescription="@string/home_team_crest"
+                tools:src="@drawable/soccerball"
+                android:layout_marginTop="@dimen/abc_control_padding_material"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                 />
+
+            <TextView
+                android:id="@+id/widget_score_list_item_home_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:textColor="@color/material_black"
+                tools:text="Manchester United"
+                android:textStyle="bold"
+                android:textSize="@dimen/TeamNames" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            tools:ignore="UseCompoundDrawables">
+
+        <TextView
+            android:id="@+id/widget_score_list_item_score"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:textColor="@color/foreground_material_light"
+            tools:text="1 - 1"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="@string/test_text"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:id="@+id/widget_score_list_item_gametime"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:textSize="@dimen/GameTime"
+            android:textStyle="bold"
+            android:textColor="@color/primary_text_default_material_light" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            tools:ignore="UseCompoundDrawables">
+
+            <ImageView
+                android:id="@+id/widget_score_list_item_away_crest"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:contentDescription="@string/away_team_crest"
+                android:layout_marginTop="@dimen/abc_control_padding_material"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                tools:src="@drawable/soccerball" />
+
+            <TextView
+                android:id="@+id/widget_score_list_item_away_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                android:textColor="@color/material_black"
+                tools:text="Everton FC"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:textSize="@dimen/TeamNames"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
