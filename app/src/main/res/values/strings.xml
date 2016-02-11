@@ -9,11 +9,19 @@
     <string name="yesterday">Yesterday</string>
     <string name="tomorrow">Tomorrow</string>
 
-    <string name="champions_league">UEFA Champions League</string>
-    <string name="bundesliga">Bundesliga</string>
-    <string name="premierleague">Premier League</string>
-    <string name="primeradivison">Primera Division</string>
-    <string name="seriaa">Serie A</string>
+    <string name="champions_league" translatable="false">UEFA Champions League</string>
+    <string name="bundesliga1" translatable="false">Bundesliga 1</string>
+    <string name="bundesliga2" translatable="false">Bundesliga 2</string>
+    <string name="bundesliga3" translatable="false">Bundesliga 3</string>
+    <string name="premierleague" translatable="false">Premier League</string>
+    <string name="primeradivison" translatable="false">Primera Division</string>
+    <string name="seriaa" translatable="false">Serie A</string>
+    <string name="eredivise" translatable="false">Eredivise</string>
+    <string name="primera_liga" translatable="false">Primera Liga</string>
+    <string name="segunda_division" translatable="false">Segunda Division</string>
+    <string name="ligue2" translatable="false">Ligue 2</string>
+    <string name="ligue1" translatable="false">Ligue 1</string>
+
     <string name="matchday_text">Match day</string>
 
     <string name="group_stage_text">Group stages</string>
@@ -26,7 +34,8 @@
     <string name="about">About</string>
     <string name="title_activity_about">About Football Scores</string>
     <string name="about_text">
-        This Application gets Football Match Scores for the Premier League, Seria A, Bundesliga, Primera Division
+        This Application gets Football Match Scores for the Premier League, Seria A, Eredivise,
+        Primera Liga, Segunda Division, Ligue 1 and 2, Bundesliga 1 2 and 3, Primera Division
         and the UEFA Champions League.
         All Match data is retrieved from the football-data.org free API.
         All team Logos were acquired from http://hdlogo.wordpress.com/ upon requesting permission form the owner.
@@ -37,7 +46,7 @@
         During the off season, when no real match data is available, fake data will be displayed by the app.
     </string>
     <string name="widget_text">This is a widget probably.</string>
-    <string name="api_key" translatable="false" >API KEY GOES HERE</string>
+    <string name="api_key" translatable="false" >9ef0e504dcb04633aeb8369a1f629dd5</string>
     <string name="dummy_data" translatable="false" >{\"timeFrameStart\":\"2015-06-18\",\"timeFrameEnd\":\"2015-06-19\",\"count\":1,\"fixtures\":[{\"_links\":{\"self\":{\"href\":\"http://api.football-data.org/alpha/fixtures/140514\"},\"soccerseason\":{\"href\":\"http://api.football-data.org/alpha/soccerseasons/357\"},\"homeTeam\":{\"href\":\"http://api.football-data.org/alpha/teams/275\"},\"awayTeam\":{\"href\":\"http://api.football-data.org/alpha/teams/263\"}},\"date\":\"2015-06-19T22:00:00Z\",\"status\":\"FINISHED\",\"matchday\":42,\"homeTeamName\":\"TESTING1\",\"awayTeamName\":\"TESTING2\",\"result\":{\"goalsHomeTeam\":2,\"goalsAwayTeam\":4}},{\"_links\":{\"self\":{\"href\":\"http://api.football-data.org/alpha/fixtures/140514\"},\"soccerseason\":{\"href\":\"http://api.football-data.org/alpha/soccerseasons/357\"},\"homeTeam\":{\"href\":\"http://api.football-data.org/alpha/teams/275\"},\"awayTeam\":{\"href\":\"http://api.football-data.org/alpha/teams/263\"}},\"date\":\"2015-06-19T22:00:00Z\",\"status\":\"FINISHED\",\"matchday\":42,\"homeTeamName\":\"TESTING1\",\"awayTeamName\":\"TESTING2\",\"result\":{\"goalsHomeTeam\":2,\"goalsAwayTeam\":4}},{\"_links\":{\"self\":{\"href\":\"http://api.football-data.org/alpha/fixtures/140514\"},\"soccerseason\":{\"href\":\"http://api.football-data.org/alpha/soccerseasons/357\"},\"homeTeam\":{\"href\":\"http://api.football-data.org/alpha/teams/275\"},\"awayTeam\":{\"href\":\"http://api.football-data.org/alpha/teams/263\"}},\"date\":\"2015-06-19T22:00:00Z\",\"status\":\"FINISHED\",\"matchday\":42,\"homeTeamName\":\"TESTING1\",\"awayTeamName\":\"TESTING2\",\"result\":{\"goalsHomeTeam\":2,\"goalsAwayTeam\":4}},{\"_links\":{\"self\":{\"href\":\"http://api.football-data.org/alpha/fixtures/140514\"},\"soccerseason\":{\"href\":\"http://api.football-data.org/alpha/soccerseasons/357\"},\"homeTeam\":{\"href\":\"http://api.football-data.org/alpha/teams/275\"},\"awayTeam\":{\"href\":\"http://api.football-data.org/alpha/teams/263\"}},\"date\":\"2015-06-19T22:00:00Z\",\"status\":\"FINISHED\",\"matchday\":42,\"homeTeamName\":\"TESTING1\",\"awayTeamName\":\"TESTING2\",\"result\":{\"goalsHomeTeam\":2,\"goalsAwayTeam\":4}},{\"_links\":{\"self\":{\"href\":\"http://api.football-data.org/alpha/fixtures/140514\"},\"soccerseason\":{\"href\":\"http://api.football-data.org/alpha/soccerseasons/357\"},\"homeTeam\":{\"href\":\"http://api.football-data.org/alpha/teams/275\"},\"awayTeam\":{\"href\":\"http://api.football-data.org/alpha/teams/263\"}},\"date\":\"2015-06-19T22:00:00Z\",\"status\":\"FINISHED\",\"matchday\":42,\"homeTeamName\":\"TESTING1\",\"awayTeamName\":\"TESTING2\",\"result\":{\"goalsHomeTeam\":2,\"goalsAwayTeam\":4}}]}</string>
     <string name="home_team_crest">Home Team Crest</string>
     <string name="away_team_crest">Away Team Crest</string>
@@ -49,4 +58,26 @@
     <string name="group_stages_6">Group Stages, Matchday : 6</string>
     <string name="matchday">"Matchday : "</string>
     <string name="select_match_day">Select Match Day</string>
+
+    <!-- Strings related to Widgets -->
+    <string name="title_widget_today">Football Scores Today</string>
+    <string name="title_widget_detail">Football Score Details</string>
+
+    <string name="next_game">Next Match</string>
+    <string name="match_info">Match Information</string>
+    <string name="future_start_time">start time</string>
+    <string name="home">Home</string>
+    <string name="away">Away</string>
+    <string name="no_matches_available">No Matches Available</string>
+    <string name="no_scores_available">No scores available yet</string>
+    <string name="scores_hashtag"> #Football_Scores </string>
+    <string name="unknown">Unknown</string>
+    <string name="action_refresh">Refresh</string>
+    <string name="football_scores_icon">Football Scores Icon</string>
+    <string name="next_football_match">Next Football Match</string>
+    <string name="dummy">dummy</string>
+    <string name="about_label">About</string>
+    <string name="key_pager_fragment">PagerFragment</string>
+    <string name="key_current_pager">Pager_Current</string>
+    <string name="key_selected_match">Selected_match</string>
 </resources>
