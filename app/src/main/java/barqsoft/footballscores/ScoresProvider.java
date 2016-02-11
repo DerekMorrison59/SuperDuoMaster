@@ -7,12 +7,15 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteQueryBuilder;
 import android.net.Uri;
+import android.util.Log;
 
 /**
  * Created by yehya khaled on 2/25/2015.
  */
 public class ScoresProvider extends ContentProvider
 {
+    public static final String LOG_TAG = "ScoresProvider";
+
     private static ScoresDBHelper mOpenHelper;
     private static final int MATCHES = 100;
     private static final int MATCHES_WITH_LEAGUE = 101;
@@ -105,9 +108,16 @@ public class ScoresProvider extends ContentProvider
         {
             case MATCHES: retCursor = mOpenHelper.getReadableDatabase().query(
                     DatabaseContract.SCORES_TABLE,
-                    projection,null,null,null,null,sortOrder); break;
+                    projection,
+                    selection,
+                    selectionArgs,
+                    null,
+                    null,
+                    sortOrder);
+                break;
+                    //projection,null,null,null,null,sortOrder); break;
             case MATCHES_WITH_DATE:
-                    //Log.v(FetchScoreTask.LOG_TAG,selectionArgs[1]);
+                    //Log.v(FetchScoreTask.LOG_TAG, selectionArgs[1]);
                     //Log.v(FetchScoreTask.LOG_TAG,selectionArgs[2]);
                     retCursor = mOpenHelper.getReadableDatabase().query(
                     DatabaseContract.SCORES_TABLE,
@@ -156,7 +166,12 @@ public class ScoresProvider extends ContentProvider
                 } finally {
                     db.endTransaction();
                 }
-                getContext().getContentResolver().notifyChange(uri,null);
+
+                Log.v(LOG_TAG, "notifyChange - Bulk inserted: " + returncount + " URI: " + DatabaseContract.scores_table.buildScoreWithDate().toString());
+
+                //getContext().getContentResolver().notifyChange(uri,null);
+                getContext().getContentResolver().notifyChange(DatabaseContract.scores_table.buildScoreWithDate(),null);
+
                 return returncount;
             default:
                 return super.bulkInsert(uri,values);
