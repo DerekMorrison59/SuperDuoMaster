@@ -1,11 +1,33 @@
 <resources>
     <!-- Default screen margins, per the Android Design guidelines. -->
-    <dimen name="activity_horizontal_margin">16dp</dimen>
-    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="activity_horizontal_margin">6dp</dimen>
+    <dimen name="activity_vertical_margin">6dp</dimen>
+
     <dimen name="list_horizonal_matgin">2dp</dimen>
     <dimen name="share_button_margin">150dp</dimen>
     <dimen name="TeamNames">17sp</dimen>
     <dimen name="GameTime">17sp</dimen>
     <dimen name="Score">30sp</dimen>
-    <dimen name="League">15sp</dimen>
+    <dimen name="NextGame">17sp</dimen>
+    <dimen name="League">18sp</dimen>
+    <dimen name="Title">24sp</dimen>
+
+    <!-- Today Widget -->
+    <dimen name="widget_header_height">36dp</dimen>
+    <dimen name="widget_today_default_width">250dp</dimen>
+    <dimen name="widget_today_default_height">110dp</dimen>
+    <dimen name="widget_today_min_resize_width">40dp</dimen>
+    <dimen name="widget_today_min_resize_height">@dimen/widget_today_default_height</dimen>
+    <dimen name="widget_today_large_width">220dp</dimen>
+
+    <dimen name="widget_detail_default_width">250dp</dimen>
+    <dimen name="widget_detail_default_height">180dp</dimen>
+    <dimen name="widget_detail_min_resize_width">220dp</dimen>
+    <dimen name="widget_detail_min_resize_height">@dimen/widget_detail_default_height</dimen>
+
+    <dimen name="widget_scores_default_height">180dp</dimen>
+    <dimen name="widget_scores_default_width">250dp</dimen>
+    <dimen name="widget_scores_min_resize_width">@dimen/widget_scores_default_width</dimen>
+    <dimen name="widget_scores_min_resize_height">@dimen/widget_scores_default_height</dimen>
+
 </resources>
