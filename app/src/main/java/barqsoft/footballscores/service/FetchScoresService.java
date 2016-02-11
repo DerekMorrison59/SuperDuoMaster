@@ -28,12 +28,17 @@ import barqsoft.footballscores.R;
 /**
  * Created by yehya khaled on 3/2/2015.
  */
-public class myFetchService extends IntentService
+public class FetchScoresService extends IntentService
 {
-    public static final String LOG_TAG = "myFetchService";
-    public myFetchService()
+    public static final String LOG_TAG = "FetchScoresService";
+
+    public static final String ACTION_DATA_UPDATED =
+            "barqsoft.footballscores.app.ACTION_DATA_UPDATED";
+
+
+    public FetchScoresService()
     {
-        super("myFetchService");
+        super("FetchScoresService");
     }
 
     @Override
@@ -134,20 +139,7 @@ public class myFetchService extends IntentService
     private void processJSONdata (String JSONdata,Context mContext, boolean isReal)
     {
         //JSON data
-        // This set of league codes is for the 2015/2016 season. In fall of 2016, they will need to
-        // be updated. Feel free to use the codes
-        final String BUNDESLIGA1 = "394";
-        final String BUNDESLIGA2 = "395";
-        final String LIGUE1 = "396";
-        final String LIGUE2 = "397";
-        final String PREMIER_LEAGUE = "398";
-        final String PRIMERA_DIVISION = "399";
-        final String SEGUNDA_DIVISION = "400";
-        final String SERIE_A = "401";
-        final String PRIMERA_LIGA = "402";
-        final String Bundesliga3 = "403";
-        final String EREDIVISIE = "404";
-
+        // The set of league codes is defined in the DatabaseContract.java file
 
         final String SEASON_LINK = "http://api.football-data.org/alpha/soccerseasons/";
         final String MATCH_LINK = "http://api.football-data.org/alpha/fixtures/";
@@ -174,7 +166,6 @@ public class myFetchService extends IntentService
         String match_id = null;
         String match_day = null;
 
-
         try {
             JSONArray matches = new JSONObject(JSONdata).getJSONArray(FIXTURES);
 
@@ -193,11 +184,19 @@ public class myFetchService extends IntentService
                 //add leagues here in order to have them be added to the DB.
                 // If you are finding no data in the app, check that this contains all the leagues.
                 // If it doesn't, that can cause an empty DB, bypassing the dummy data routine.
-                if(     League.equals(PREMIER_LEAGUE)      ||
-                        League.equals(SERIE_A)             ||
-                        League.equals(BUNDESLIGA1)         ||
-                        League.equals(BUNDESLIGA2)         ||
-                        League.equals(PRIMERA_DIVISION)     )
+                if(     League.equals(DatabaseContract.Leagues.BUNDESLIGA1)      ||
+                        League.equals(DatabaseContract.Leagues.BUNDESLIGA2)      ||
+                        League.equals(DatabaseContract.Leagues.BUNDESLIGA3)      ||
+                        League.equals(DatabaseContract.Leagues.CHAMPIONS_LEAGUE) ||
+                        League.equals(DatabaseContract.Leagues.EREDIVISIE) ||
+                        League.equals(DatabaseContract.Leagues.LIGUE1) ||
+                        League.equals(DatabaseContract.Leagues.LIGUE2) ||
+                        League.equals(DatabaseContract.Leagues.PREMIER_LEAGUE) ||
+                        League.equals(DatabaseContract.Leagues.PRIMERA_DIVISION) ||
+                        League.equals(DatabaseContract.Leagues.PRIMERA_LIGA) ||
+                        League.equals(DatabaseContract.Leagues.SEGUNDA_DIVISION) ||
+                        League.equals(DatabaseContract.Leagues.SERIE_A)
+                  )
                 {
                     match_id = match_data.getJSONObject(LINKS).getJSONObject(SELF).
                             getString("href");
@@ -285,7 +284,7 @@ public class myFetchService extends IntentService
             String scoreColumns = DatabaseContract.scores_table.DATE_COL + "<?";
             String[] scoreSpecs = {cutDate};
 
-            // delete all non-favorites of this 'sort-type' in the database
+            // delete all matches that are older than 'cutDate' in the database
             deleted_rows = mContext.getContentResolver().delete(
                     DatabaseContract.BASE_CONTENT_URI,
                     scoreColumns,
@@ -302,12 +301,25 @@ public class myFetchService extends IntentService
                 //Log.v(LOG_TAG,"Succesfully Inserted : " + String.valueOf(inserted_data));
             }
             //Log.v(LOG_TAG,"Unused Matches : " + String.valueOf(unusedMatches));
+
+            updateWidgets(mContext);
         }
         catch (JSONException e)
         {
             Log.e(LOG_TAG,e.getMessage());
         }
-
     }
+
+    private void updateWidgets(Context context) {
+
+        // Setting the package ensures that only components in this app will receive the broadcast
+        Intent dataUpdatedIntent = new Intent(ACTION_DATA_UPDATED)
+                .setPackage(context.getPackageName());
+
+        //Log.v(LOG_TAG, "updateWidgets - package name: " + context.getPackageName());
+
+        context.sendBroadcast(dataUpdatedIntent);
+    }
+
 }
 
