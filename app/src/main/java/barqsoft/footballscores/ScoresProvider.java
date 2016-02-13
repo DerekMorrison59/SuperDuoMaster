@@ -7,7 +7,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteQueryBuilder;
 import android.net.Uri;
-import android.util.Log;
 
 /**
  * Created by yehya khaled on 2/25/2015.
@@ -35,9 +34,9 @@ public class ScoresProvider extends ContentProvider
         final UriMatcher matcher = new UriMatcher(UriMatcher.NO_MATCH);
         final String authority = DatabaseContract.BASE_CONTENT_URI.toString();
         matcher.addURI(authority, null , MATCHES);
-        matcher.addURI(authority, "league" , MATCHES_WITH_LEAGUE);
-        matcher.addURI(authority, "id" , MATCHES_WITH_ID);
-        matcher.addURI(authority, "date" , MATCHES_WITH_DATE);
+        matcher.addURI(authority, DatabaseContract.scores_table.LEAGUE_COL , MATCHES_WITH_LEAGUE);
+        matcher.addURI(authority, DatabaseContract.scores_table.ID , MATCHES_WITH_ID);
+        matcher.addURI(authority, DatabaseContract.scores_table.DATE_COL , MATCHES_WITH_DATE);
         return matcher;
     }
 
@@ -91,7 +90,7 @@ public class ScoresProvider extends ContentProvider
             case MATCHES_WITH_DATE:
                 return DatabaseContract.scores_table.CONTENT_TYPE;
             default:
-                throw new UnsupportedOperationException("Unknown uri :" + uri );
+                throw new UnsupportedOperationException(getContext().getString(R.string.error_unknown_uri) + uri );
         }
     }
 
@@ -128,7 +127,7 @@ public class ScoresProvider extends ContentProvider
             case MATCHES_WITH_LEAGUE: retCursor = mOpenHelper.getReadableDatabase().query(
                     DatabaseContract.SCORES_TABLE,
                     projection,SCORES_BY_LEAGUE,selectionArgs,null,null,sortOrder); break;
-            default: throw new UnsupportedOperationException("Unknown Uri" + uri);
+            default: throw new UnsupportedOperationException(getContext().getString(R.string.error_unknown_uri) + uri);
         }
         retCursor.setNotificationUri(getContext().getContentResolver(),uri);
         return retCursor;
@@ -167,7 +166,7 @@ public class ScoresProvider extends ContentProvider
                     db.endTransaction();
                 }
 
-                Log.v(LOG_TAG, "notifyChange - Bulk inserted: " + returncount + " URI: " + DatabaseContract.scores_table.buildScoreWithDate().toString());
+                //Log.v(LOG_TAG, "notifyChange - Bulk inserted: " + returncount + " URI: " + DatabaseContract.scores_table.buildScoreWithDate().toString());
 
                 //getContext().getContentResolver().notifyChange(uri,null);
                 getContext().getContentResolver().notifyChange(DatabaseContract.scores_table.buildScoreWithDate(),null);

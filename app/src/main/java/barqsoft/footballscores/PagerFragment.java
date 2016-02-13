@@ -99,7 +99,7 @@ public class PagerFragment extends Fragment
         String currentDayName = Utilities.getDayName(getContext(), mDateInMillis);
 
         // if the day has changed then update this page
-        if (!currentDayName.equals("Today")) {
+        if (!currentDayName.equals(getString(R.string.today))) {
 
             // save 'now' as the new Today date in Millis
             mDateInMillis = System.currentTimeMillis();

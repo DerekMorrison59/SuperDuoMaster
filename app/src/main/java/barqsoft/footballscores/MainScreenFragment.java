@@ -23,9 +23,7 @@ import java.util.Date;
 
 import barqsoft.footballscores.service.FetchScoresService;
 
-/**
- * A placeholder fragment containing a simple view.
- */
+
 public class MainScreenFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor>
 {
     public final String LOG_TAG = MainScreenFragment.class.getSimpleName();
@@ -71,7 +69,7 @@ public class MainScreenFragment extends Fragment implements LoaderManager.Loader
         mDateInMilliseconds = date;
         Date fragmentdate = new Date(date);
 
-        SimpleDateFormat mformat = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat mformat = new SimpleDateFormat(context.getString(R.string.date_format_string));
 
         mFragmentdate[0] = mformat.format(fragmentdate);
 
@@ -196,6 +194,4 @@ public class MainScreenFragment extends Fragment implements LoaderManager.Loader
     {
         mScoresAdapter.changeCursor(null);
     }
-
-
 }

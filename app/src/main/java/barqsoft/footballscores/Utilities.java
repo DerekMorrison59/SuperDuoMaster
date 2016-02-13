@@ -121,7 +121,8 @@ public class Utilities
 
     public static int getTeamCrestByTeamName (String teamname)
     {
-        if (teamname==null){return R.drawable.no_icon;}
+        if (null == teamname) { return R.drawable.no_icon; }
+
         switch (teamname)
         {   //This is the set of icons that are currently in the app. Feel free to find and add more as you go.
 
