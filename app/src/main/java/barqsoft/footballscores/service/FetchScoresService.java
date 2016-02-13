@@ -35,6 +35,8 @@ public class FetchScoresService extends IntentService
     public static final String ACTION_DATA_UPDATED =
             "barqsoft.footballscores.app.ACTION_DATA_UPDATED";
 
+    final String FIXTURES = "fixtures";
+    final static int MILLIS_IN_A_DAY = 86400000;
 
     public FetchScoresService()
     {
@@ -95,7 +97,7 @@ public class FetchScoresService extends IntentService
         }
         catch (Exception e)
         {
-            Log.e(LOG_TAG,"Exception here" + e.getMessage());
+            Log.e(LOG_TAG,getString(R.string.error_during_fetch) + e.getMessage());
         }
         finally {
             if(m_connection != null)
@@ -109,14 +111,14 @@ public class FetchScoresService extends IntentService
                 }
                 catch (IOException e)
                 {
-                    Log.e(LOG_TAG,"Error Closing Stream");
+                    Log.e(LOG_TAG,getString(R.string.error_closing_stream));
                 }
             }
         }
         try {
             if (JSON_data != null) {
                 //This bit is to check if the data contains any matches. If not, we call processJson on the dummy data
-                JSONArray matches = new JSONObject(JSON_data).getJSONArray("fixtures");
+                JSONArray matches = new JSONObject(JSON_data).getJSONArray(FIXTURES);
                 if (matches.length() == 0) {
                     //if there is no data, call the function on dummy data
                     //this is expected behavior during the off season.
@@ -143,7 +145,6 @@ public class FetchScoresService extends IntentService
 
         final String SEASON_LINK = "http://api.football-data.org/alpha/soccerseasons/";
         final String MATCH_LINK = "http://api.football-data.org/alpha/fixtures/";
-        final String FIXTURES = "fixtures";
         final String LINKS = "_links";
         final String SOCCER_SEASON = "soccerseason";
         final String SELF = "self";
@@ -209,11 +210,11 @@ public class FetchScoresService extends IntentService
                     mDate = match_data.getString(MATCH_DATE);
                     mTime = mDate.substring(mDate.indexOf("T") + 1, mDate.indexOf("Z"));
                     mDate = mDate.substring(0,mDate.indexOf("T"));
-                    SimpleDateFormat match_date = new SimpleDateFormat("yyyy-MM-ddHH:mm:ss");
+                    SimpleDateFormat match_date = new SimpleDateFormat(getString(R.string.date_string_format_to_seconds));
                     match_date.setTimeZone(TimeZone.getTimeZone("UTC"));
                     try {
                         Date parseddate = match_date.parse(mDate+mTime);
-                        SimpleDateFormat new_date = new SimpleDateFormat("yyyy-MM-dd:HH:mm");
+                        SimpleDateFormat new_date = new SimpleDateFormat(getString(R.string.date_string_format_to_minutes));
                         new_date.setTimeZone(TimeZone.getDefault());
                         mDate = new_date.format(parseddate);
                         mTime = mDate.substring(mDate.indexOf(":") + 1);
@@ -221,14 +222,14 @@ public class FetchScoresService extends IntentService
 
                         if(!isReal){
                             //This if statement changes the dummy data's date to match our current date range.
-                            Date fragmentdate = new Date(System.currentTimeMillis()+((i-2)*86400000));
-                            SimpleDateFormat mformat = new SimpleDateFormat("yyyy-MM-dd");
+                            Date fragmentdate = new Date(System.currentTimeMillis()+((i-2)*MILLIS_IN_A_DAY));
+                            SimpleDateFormat mformat = new SimpleDateFormat(getString(R.string.date_format_string));
                             mDate=mformat.format(fragmentdate);
                         }
                     }
                     catch (Exception e)
                     {
-                        Log.d(LOG_TAG, "error here!");
+                        Log.d(LOG_TAG, getString(R.string.error_parse_date));
                         Log.e(LOG_TAG,e.getMessage());
                     }
                     Home = match_data.getString(HOME_TEAM);
@@ -236,6 +237,7 @@ public class FetchScoresService extends IntentService
                     Home_goals = match_data.getJSONObject(RESULT).getString(HOME_GOALS);
                     Away_goals = match_data.getJSONObject(RESULT).getString(AWAY_GOALS);
                     match_day = match_data.getString(MATCH_DAY);
+
                     ContentValues match_values = new ContentValues();
                     match_values.put(DatabaseContract.scores_table.MATCH_ID,match_id);
                     match_values.put(DatabaseContract.scores_table.DATE_COL,mDate);
@@ -276,8 +278,8 @@ public class FetchScoresService extends IntentService
             int deleted_rows;
 
             // create a date string for 2 days ago
-            Date cutoffDate = new Date(System.currentTimeMillis()-(2*86400000));
-            SimpleDateFormat mformat = new SimpleDateFormat("yyyy-MM-dd");
+            Date cutoffDate = new Date(System.currentTimeMillis()-(2*MILLIS_IN_A_DAY));
+            SimpleDateFormat mformat = new SimpleDateFormat(getString(R.string.date_format_string));
             String cutDate = mformat.format(cutoffDate);
 
 
