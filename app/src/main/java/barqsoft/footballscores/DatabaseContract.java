@@ -38,6 +38,7 @@ public class DatabaseContract
         public static final String MATCH_ID = "match_id";
         public static final String MATCH_DAY = "match_day";
 
+        public static final String ID = "id";
         //public static Uri SCORES_CONTENT_URI = BASE_CONTENT_URI.buildUpon().appendPath(PATH)
                 //.build();
 
@@ -49,15 +50,15 @@ public class DatabaseContract
 
         public static Uri buildScoreWithLeague()
         {
-            return BASE_CONTENT_URI.buildUpon().appendPath("league").build();
+            return BASE_CONTENT_URI.buildUpon().appendPath(LEAGUE_COL).build();
         }
         public static Uri buildScoreWithId()
         {
-            return BASE_CONTENT_URI.buildUpon().appendPath("id").build();
+            return BASE_CONTENT_URI.buildUpon().appendPath(ID).build();
         }
         public static Uri buildScoreWithDate()
         {
-            return BASE_CONTENT_URI.buildUpon().appendPath("date").build();
+            return BASE_CONTENT_URI.buildUpon().appendPath(DATE_COL).build();
         }
     }
     //URI data
