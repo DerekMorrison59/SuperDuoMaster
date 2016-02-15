@@ -2,6 +2,8 @@ package barqsoft.footballscores;
 
 import android.content.Context;
 import android.content.res.Configuration;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.support.v4.view.ViewCompat;
 import android.text.format.Time;
 
@@ -60,21 +62,29 @@ public class Utilities
     }
     public static String getMatchDay(Context context, int match_day,int league_num)
     {
-        if(league_num == CHAMPIONS_LEAGUE)
+        final int GROUP_STAGES = 6;
+        final int FIRST_ROUND_KNOCKOUT_1 = 7;
+        final int FIRST_ROUND_KNOCKOUT_2 = 8;
+        final int QUARTER_FINAL_1 = 9;
+        final int QUARTER_FINAL_2 = 10;
+        final int SEMI_FINAL_1 = 11;
+        final int SEMI_FINAL_2 = 12;
+
+        if (league_num == CHAMPIONS_LEAGUE)
         {
-            if (match_day <= 6)
+            if (match_day <= GROUP_STAGES)
             {
-                return context.getString(R.string.group_stages_6);
+                return context.getString(R.string.group_stages_6) + String.valueOf(match_day);
             }
-            else if(match_day == 7 || match_day == 8)
+            else if (match_day == FIRST_ROUND_KNOCKOUT_1 || match_day == FIRST_ROUND_KNOCKOUT_2)
             {
                 return context.getString(R.string.first_knockout_round);
             }
-            else if(match_day == 9 || match_day == 10)
+            else if (match_day == QUARTER_FINAL_1 || match_day == QUARTER_FINAL_2)
             {
                 return context.getString(R.string.quarter_final);
             }
-            else if(match_day == 11 || match_day == 12)
+            else if (match_day == SEMI_FINAL_1 || match_day == SEMI_FINAL_2)
             {
                 return context.getString(R.string.semi_final);
             }
@@ -121,28 +131,44 @@ public class Utilities
 
     public static int getTeamCrestByTeamName (String teamname)
     {
+        // it is ok to leave these strings here because they are only used once and they do not change by locale or language
+        final String ARSENAL_LONDON_FC = "Arsenal London FC";
+        final String MANCHESTER_UNITED_FC = "Manchester United FC";
+        final String SWANSEA_CITY = "Swansea City";
+        final String LEICESTER_CITY = "Leicester City";
+        final String EVERTON_FC = "Everton FC";
+        final String WEST_HAM_UNITED_FC = "West Ham United FC";
+        final String TOTTENHAM_HOTSPUR_FC = "Tottenham Hotspur FC";
+        final String WEST_BROMWICH_ALBION = "West Bromwich Albion";
+        final String SUNDERLAND_AFC = "Sunderland AFC";
+        final String STOKE_CITY_FC = "Stoke City FC";
+        final String UDINESE_CALCIO = "Udinese Calcio";
+        final String ATALANTA_BC = "Atalanta BC";
+        final String AS_ROMA = "AS Roma";
+        final String FC_BARCELONA = "FC Barcelona";
+
+        // showing the No Icon image is a tip that there was no team name returned from the server
         if (null == teamname) { return R.drawable.no_icon; }
 
         switch (teamname)
         {   //This is the set of icons that are currently in the app. Feel free to find and add more as you go.
 
-            // it is ok to leave these strings here because they are only used once and they do not change by locale or language
-            case "Arsenal London FC" : return R.drawable.arsenal;
-            case "Manchester United FC" : return R.drawable.manchester_united;
-            case "Swansea City" : return R.drawable.swansea_city_afc;
-            case "Leicester City" : return R.drawable.leicester_city_fc_hd_logo;
-            case "Everton FC" : return R.drawable.everton_fc_logo1;
-            case "West Ham United FC" : return R.drawable.west_ham;
-            case "Tottenham Hotspur FC" : return R.drawable.tottenham_hotspur;
-            case "West Bromwich Albion" : return R.drawable.west_bromwich_albion_hd_logo;
-            case "Sunderland AFC" : return R.drawable.sunderland;
-            case "Stoke City FC" : return R.drawable.stoke_city;
-            case "Udinese Calcio" : return R.drawable.udinese_calcio;
-            case "Atalanta BC" : return R.drawable.atalanta;
-            case "AS Roma" : return R.drawable.as_roma;
-            case "FC Barcelona" : return R.drawable.barcelona_fc;
+            case ARSENAL_LONDON_FC : return R.drawable.arsenal;
+            case MANCHESTER_UNITED_FC : return R.drawable.manchester_united;
+            case SWANSEA_CITY : return R.drawable.swansea_city_afc;
+            case LEICESTER_CITY : return R.drawable.leicester_city_fc_hd_logo;
+            case EVERTON_FC : return R.drawable.everton_fc_logo1;
+            case WEST_HAM_UNITED_FC : return R.drawable.west_ham;
+            case TOTTENHAM_HOTSPUR_FC : return R.drawable.tottenham_hotspur;
+            case WEST_BROMWICH_ALBION : return R.drawable.west_bromwich_albion_hd_logo;
+            case SUNDERLAND_AFC : return R.drawable.sunderland;
+            case STOKE_CITY_FC : return R.drawable.stoke_city;
+            case UDINESE_CALCIO : return R.drawable.udinese_calcio;
+            case ATALANTA_BC : return R.drawable.atalanta;
+            case AS_ROMA : return R.drawable.as_roma;
+            case FC_BARCELONA : return R.drawable.barcelona_fc;
 
-            // TODO Add more Team Crests to the resource folders
+            // TODO Add more Team Crests to the resource folders or find a service to provide them on demand
             // Atalanta BC
             // AC Chievo Verona
             // Juventus Turin
@@ -190,5 +216,25 @@ public class Utilities
         final long MILLI_DAY = 86400000;
 
         return System.currentTimeMillis() + dayOffset * MILLI_DAY;
+    }
+
+    public static boolean isNetworkAvailable(Context context) {
+
+        ConnectivityManager connectivityManager = null;
+        boolean isAvailable = false;
+
+        if (context != null){
+            connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        }
+
+        // Taken from  http://developer.android.com/training/monitoring-device-state/connectivity-monitoring.html
+        if (connectivityManager != null) {
+            NetworkInfo activeNetwork = connectivityManager.getActiveNetworkInfo();
+
+            // the active network must exist and it must be connected (or in the process of connecting)
+            isAvailable = activeNetwork != null && activeNetwork.isConnectedOrConnecting();
+        }
+
+        return isAvailable;
     }
 }
