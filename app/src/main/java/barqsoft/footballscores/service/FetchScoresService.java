@@ -47,7 +47,7 @@ public class FetchScoresService extends IntentService
     protected void onHandleIntent(Intent intent)
     {
         // changed the call to get current & future data from "n2" to "n3" to ensure
-        // that we get matches for today plus 2 days into the future
+        // that we get matches for the past 2 days, today and 2 days into the future
         getData("n3");
         getData("p2");
     }
@@ -125,12 +125,10 @@ public class FetchScoresService extends IntentService
                     processJSONdata(getString(R.string.dummy_data), getApplicationContext(), false);
                     return;
                 }
-
-
                 processJSONdata(JSON_data, getApplicationContext(), true);
             } else {
                 //Could not Connect
-                Log.d(LOG_TAG, "Could not connect to server.");
+                Log.d(LOG_TAG, getString(R.string.error_could_not_connect));
             }
         }
         catch(Exception e)
@@ -143,18 +141,18 @@ public class FetchScoresService extends IntentService
         //JSON data
         // The set of league codes is defined in the DatabaseContract.java file
 
-        final String SEASON_LINK = "http://api.football-data.org/alpha/soccerseasons/";
-        final String MATCH_LINK = "http://api.football-data.org/alpha/fixtures/";
-        final String LINKS = "_links";
-        final String SOCCER_SEASON = "soccerseason";
-        final String SELF = "self";
-        final String MATCH_DATE = "date";
-        final String HOME_TEAM = "homeTeamName";
-        final String AWAY_TEAM = "awayTeamName";
-        final String RESULT = "result";
-        final String HOME_GOALS = "goalsHomeTeam";
-        final String AWAY_GOALS = "goalsAwayTeam";
-        final String MATCH_DAY = "matchday";
+        final String SEASON_LINK = getString(R.string.json_season_link);
+        final String MATCH_LINK = getString(R.string.json_match_link);
+        final String LINKS = getString(R.string.json_links);
+        final String SOCCER_SEASON = getString(R.string.json_soccerseason);
+        final String SELF = getString(R.string.json_self);
+        final String MATCH_DATE = getString(R.string.json_match_date);
+        final String HOME_TEAM = getString(R.string.json_home_team);
+        final String AWAY_TEAM = getString(R.string.json_away_team);
+        final String RESULT = getString(R.string.json_result);
+        final String HOME_GOALS = getString(R.string.json_goals_home);
+        final String AWAY_GOALS = getString(R.string.json_goals_away);
+        final String MATCH_DAY = getString(R.string.json_matchday);
 
         //Match data
         String League = null;
@@ -248,8 +246,8 @@ public class FetchScoresService extends IntentService
                     match_values.put(DatabaseContract.scores_table.AWAY_GOALS_COL,Away_goals);
                     match_values.put(DatabaseContract.scores_table.LEAGUE_COL,League);
                     match_values.put(DatabaseContract.scores_table.MATCH_DAY,match_day);
-                    //log spam
 
+                    //log spam
                     //Log.v(LOG_TAG,match_id);
                     //Log.v(LOG_TAG,mDate);
                     //Log.v(LOG_TAG,mTime);
@@ -265,16 +263,18 @@ public class FetchScoresService extends IntentService
                     unusedMatches++;
                 }
             }
-            int inserted_data = 0;
+
+            // used for debugging via logging
+            int inserted_rows = 0;
+
             ContentValues[] insert_data = new ContentValues[values.size()];
             values.toArray(insert_data);
 
             // BUG FIXED: the old code did not delete database entries that had expired
-            // Any match that is older than 2 days ago is not display and should
+            // Any match that is older than 2 days ago is not displayed and should
             // therefore be deleted from the database
 
-            // remove database entries that are too old to be displayed
-            // that means any row where the date is before 2 days ago
+            // used for debugging via logging
             int deleted_rows;
 
             // create a date string for 2 days ago
@@ -282,7 +282,7 @@ public class FetchScoresService extends IntentService
             SimpleDateFormat mformat = new SimpleDateFormat(getString(R.string.date_format_string));
             String cutDate = mformat.format(cutoffDate);
 
-
+            // use Less Than because the app may not have been run for a while and there could be old entries
             String scoreColumns = DatabaseContract.scores_table.DATE_COL + "<?";
             String[] scoreSpecs = {cutDate};
 
@@ -295,12 +295,11 @@ public class FetchScoresService extends IntentService
 
             //Log.v(LOG_TAG,"Deleted Rows : " + String.valueOf(deleted_rows));
 
-
             // only call insert if there are new items to insert
             if (insert_data.length > 0) {
-                inserted_data = mContext.getContentResolver().bulkInsert(
+                inserted_rows = mContext.getContentResolver().bulkInsert(
                         DatabaseContract.BASE_CONTENT_URI, insert_data);
-                //Log.v(LOG_TAG,"Succesfully Inserted : " + String.valueOf(inserted_data));
+                //Log.v(LOG_TAG,"Succesfully Inserted : " + String.valueOf(inserted_rows));
             }
             //Log.v(LOG_TAG,"Unused Matches : " + String.valueOf(unusedMatches));
 
