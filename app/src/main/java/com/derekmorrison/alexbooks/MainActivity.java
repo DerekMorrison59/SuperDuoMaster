@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
     private BookListAdapter mBookListAdapter;
     private ListView mBookListView;
-    //private int mListposition = ListView.INVALID_POSITION;
+
     private final int LOADER_ID = 10;
     private String mSearchString = "";
 
@@ -145,14 +145,12 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
                                 MainActivity.this.startActivity(intent);
                             }
                         }
-
                         return false;
                     }
                 })
                 .withSavedInstance(savedInstanceState)
                 .withShowDrawerOnFirstLaunch(false)
                 .build();
-
 
         mBookListAdapter = new BookListAdapter(this, null, 0);
         mBookListView = (ListView) findViewById(R.id.listOfBooks);
@@ -195,7 +193,6 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
                     mFragmentBookDetails = null;
                 }
-
             } else {
                 super.onBackPressed();
             }
@@ -379,5 +376,4 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     public void onLoaderReset(Loader<Cursor> loader) {
         mBookListAdapter.changeCursor(null);
     }
-
 }
