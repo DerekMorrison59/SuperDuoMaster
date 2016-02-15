@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="barqsoft.footballscores" >
 
-    <!-- ERROR - this reference to <<< android:maxSdkVersion="22" >>> is incorrect -->
+    <!-- ERROR - this reference to <<< android:maxSdkVersion="22" >>> was incorrect -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
