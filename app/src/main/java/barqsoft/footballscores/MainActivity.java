@@ -59,7 +59,6 @@ public class MainActivity extends AppCompatActivity //ActionBarActivity
         final PendingIntent pIntent = PendingIntent.getBroadcast(this, ScoreAlarmReceiver.REQUEST_CODE,
                 intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
-        // Setup periodic alarm every 5 seconds
         long firstMillis = System.currentTimeMillis(); // alarm is set right away
         AlarmManager alarm = (AlarmManager) this.getSystemService(Context.ALARM_SERVICE);
 
@@ -80,9 +79,6 @@ public class MainActivity extends AppCompatActivity //ActionBarActivity
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
