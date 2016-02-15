@@ -22,6 +22,8 @@ import android.widget.Toast;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import barqsoft.footballscores.data.DatabaseContract;
+import barqsoft.footballscores.data.scoresAdapter;
 import barqsoft.footballscores.service.FetchScoresService;
 
 
