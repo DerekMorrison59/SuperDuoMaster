@@ -17,6 +17,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -143,6 +144,10 @@ public class MainScreenFragment extends Fragment implements LoaderManager.Loader
         });
 
         setHasOptionsMenu(true);
+
+        if (false == Utilities.isNetworkAvailable(getContext())) {
+            Toast.makeText(getContext(), R.string.no_internet_connection, Toast.LENGTH_LONG).show();
+        }
 
         return rootView;
     }
