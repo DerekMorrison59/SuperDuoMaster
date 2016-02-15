@@ -89,6 +89,7 @@ public class BookService extends IntentService {
             return;
         }
 
+        // check to see if the book is already in the database
         Cursor bookEntry = getContentResolver().query(
                 AlexandriaContract.BookEntry.buildBookUri(Long.parseLong(ean)),
                 null, // leaving "columns" null just returns all the columns.
@@ -97,6 +98,7 @@ public class BookService extends IntentService {
                 null  // sort order
         );
 
+        // this ISBN is already in the database, no need to query Google
         if(bookEntry.getCount()>0){
             bookEntry.close();
             return;
@@ -104,15 +106,16 @@ public class BookService extends IntentService {
 
         bookEntry.close();
 
+        // this ISBN was not found in the database, query the Google API for details
         HttpURLConnection urlConnection = null;
         BufferedReader reader = null;
         String bookJsonString = null;
 
         try {
-            final String FORECAST_BASE_URL = "https://www.googleapis.com/books/v1/volumes?";
-            final String QUERY_PARAM = "q";
+            final String FORECAST_BASE_URL = getString(R.string.google_api_books);
+            final String QUERY_PARAM = getString(R.string.google_api_query);
 
-            final String ISBN_PARAM = "isbn:" + ean;
+            final String ISBN_PARAM = getString(R.string.google_api_isbn) + ean;
 
             Uri builtUri = Uri.parse(FORECAST_BASE_URL).buildUpon()
                     .appendQueryParameter(QUERY_PARAM, ISBN_PARAM)
@@ -121,7 +124,7 @@ public class BookService extends IntentService {
             URL url = new URL(builtUri.toString());
 
             urlConnection = (HttpURLConnection) url.openConnection();
-            urlConnection.setRequestMethod("GET");
+            urlConnection.setRequestMethod(getString(R.string.request_method));
             urlConnection.connect();
 
             InputStream inputStream = urlConnection.getInputStream();
@@ -134,7 +137,7 @@ public class BookService extends IntentService {
             String line;
             while ((line = reader.readLine()) != null) {
                 buffer.append(line);
-                buffer.append("\n");
+                buffer.append(getString(R.string.new_line));
             }
 
             if (buffer.length() == 0) {
@@ -162,16 +165,16 @@ public class BookService extends IntentService {
             return;
         }
 
-        final String ITEMS = "items";
-        final String VOLUME_INFO = "volumeInfo";
+        final String ITEMS = getString(R.string.json_items);
+        final String VOLUME_INFO = getString(R.string.json_volume_info);
 
-        final String TITLE = "title";
-        final String SUBTITLE = "subtitle";
-        final String AUTHORS = "authors";
-        final String DESC = "description";
-        final String CATEGORIES = "categories";
-        final String IMG_URL_PATH = "imageLinks";
-        final String IMG_URL = "thumbnail";
+        final String TITLE = getString(R.string.json_title);
+        final String SUBTITLE = getString(R.string.json_subtitle);
+        final String AUTHORS = getString(R.string.json_authors);
+        final String DESC = getString(R.string.json_description);
+        final String CATEGORIES = getString(R.string.json_categories);
+        final String IMG_URL_PATH = getString(R.string.json_image_links);
+        final String IMG_URL = getString(R.string.json_thumbnail);
 
         try {
             JSONObject bookJson = new JSONObject(bookJsonString);
