@@ -12,10 +12,10 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import barqsoft.footballscores.DatabaseContract;
+import barqsoft.footballscores.data.DatabaseContract;
 import barqsoft.footballscores.R;
 import barqsoft.footballscores.Utilities;
-import barqsoft.footballscores.scoresAdapter;
+import barqsoft.footballscores.data.scoresAdapter;
 
 /**
  * Created by Derek on 1/13/2016.
