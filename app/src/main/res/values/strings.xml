@@ -2,7 +2,6 @@
 <resources>
 
     <string name="app_name">Football Scores</string>
-    <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="test_text">Test</string>
     <string name="today">Today</string>
@@ -55,7 +54,7 @@
     <string name="home_team_name">Home Team Name</string>
     <string name="away_team_name">Away Team Name</string>
     <string name="unknown_league_error_msg">Unknown League. Please report</string>
-    <string name="group_stages_6">Group Stages, Matchday : 6</string>
+    <string name="group_stages_6">Group Stages, Matchday : </string>
     <string name="matchday">"Matchday : "</string>
     <string name="select_match_day">Select Match Day</string>
 
@@ -80,11 +79,31 @@
     <string name="key_pager_fragment">PagerFragment</string>
     <string name="key_current_pager">Pager_Current</string>
     <string name="key_selected_match">Selected_match</string>
-    <string name="date_format_string">yyyy-MM-dd</string>
+
+    <!--error messages-->
     <string name="error_unknown_uri">Unknown uri :</string>
     <string name="error_during_fetch">"Exception during fetch: "</string>
     <string name="error_closing_stream">Error Closing Stream</string>
-    <string name="error_parse_date">"exception parsing date! "</string>
+    <string name="error_parse_date">"Exception parsing date! "</string>
+    <string name="error_could_not_connect">Could not connect to server.</string>
+    <string name="no_internet_connection">No Internet Connection</string>
+
+    <!--date format strings-->
+    <string name="date_format_string">yyyy-MM-dd</string>
     <string name="date_string_format_to_minutes">yyyy-MM-dd:HH:mm</string>
     <string name="date_string_format_to_seconds">yyyy-MM-ddHH:mm:ss</string>
+
+    <!--JSON strings - DO NOT TRANSLATE-->
+    <string name="json_season_link" translatable="false" >http://api.football-data.org/alpha/soccerseasons/</string>
+    <string name="json_match_link" translatable="false" >http://api.football-data.org/alpha/fixtures/</string>
+    <string name="json_links" translatable="false" >_links</string>
+    <string name="json_soccerseason" translatable="false" >soccerseason</string>
+    <string name="json_self" translatable="false" >self</string>
+    <string name="json_match_date" translatable="false" >date</string>
+    <string name="json_home_team" translatable="false" >homeTeamName</string>
+    <string name="json_away_team" translatable="false" >awayTeamName</string>
+    <string name="json_result" translatable="false" >result</string>
+    <string name="json_goals_home" translatable="false" >goalsHomeTeam</string>
+    <string name="json_goals_away" translatable="false" >goalsAwayTeam</string>
+    <string name="json_matchday" translatable="false" >matchday</string>
 </resources>
