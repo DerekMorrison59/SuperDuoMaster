@@ -1,4 +1,4 @@
-package barqsoft.footballscores;
+package barqsoft.footballscores.data;
 
 import android.content.Context;
 import android.content.Intent;
@@ -12,6 +12,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+
+import barqsoft.footballscores.MainActivity;
+import barqsoft.footballscores.R;
+import barqsoft.footballscores.Utilities;
+import barqsoft.footballscores.ViewHolder;
 
 /**
  * Created by yehya khaled on 2/26/2015.
