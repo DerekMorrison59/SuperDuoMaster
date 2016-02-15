@@ -24,6 +24,7 @@ import java.util.Vector;
 
 import barqsoft.footballscores.DatabaseContract;
 import barqsoft.footballscores.R;
+import barqsoft.footballscores.Utilities;
 
 /**
  * Created by yehya khaled on 3/2/2015.
@@ -46,6 +47,11 @@ public class FetchScoresService extends IntentService
     @Override
     protected void onHandleIntent(Intent intent)
     {
+        // no point in trying to call server if there is no internet connection
+        if (false == Utilities.isNetworkAvailable(getApplicationContext())){
+            return;
+        }
+
         // changed the call to get current & future data from "n2" to "n3" to ensure
         // that we get matches for the past 2 days, today and 2 days into the future
         getData("n3");
