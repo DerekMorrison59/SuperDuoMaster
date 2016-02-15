@@ -56,7 +56,7 @@
     <!--JSON Tags - Do Not Translate-->
     <string name="json_items" translatable="false" >items</string>
     <string name="json_volume_info" translatable="false" >volumeInfo</string>
-    <string name="json_title">title translatable="false" </string>
+    <string name="json_title" translatable="false" >title</string>
     <string name="json_subtitle" translatable="false" >subtitle</string>
     <string name="json_authors" translatable="false" >authors</string>
     <string name="json_description" translatable="false" >description</string>
