@@ -1,0 +1,73 @@
+<resources>
+    <string name="app_name">AlexBooks</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_book_search">Book Search</string>
+    <string name="title_activity_book_add">Add or Scan a Book</string>
+    <string name="title_activity_book_details">Book Details</string>
+    <string name="title_activity_alex_about">About AlexBooks</string>
+
+    <string name="about_text1">This application gets book information from a free API provided by Google.
+        All titles, cover images, and author information come from the Google API.</string>
+    <string name="about_text2">The original version of this app (Alexandria) was built by Sascha Jaschke
+        and a modified version is given to students in the Udacity Android Nanodegree program. </string>
+    <string name="about_text3">Add books to this app using the Add Book button, then either enter the 13 digit ISBN
+        or use the Scan button and the camera to read the bar code on the book.
+        View book details by tapping a card in the list. Search for a book by entering any word in the title</string>
+
+    <string name="scan_button">Scan</string>
+    <string name="input_hint">Enter the ISBN-13 (Digits only)</string>
+    <string name="book_cover">Bookcover</string>
+
+    <string name="ok_button">Next</string>
+    <string name="cancel_button">Cancel</string>
+    <string name="button_save">Save</string>
+    <string name="button_delete">Delete</string>
+
+    <string name="not_found">No Book found</string>
+    <string name="search">Search</string>
+    <string name="delete">Delete Book</string>
+    <string name="action_share">Share</string>
+    <string name="share_text">A must read book: </string>
+
+    <string name="title_activity_book_scan">BookScan</string>
+    <string name="books_showing">"Books Showing: "</string>
+    <string name="book_cover_description">Book Cover</string>
+    <string name="drawer_header_text">AlexBooks</string>
+    <string name="menu_home">Home</string>
+    <string name="menu_add_book">Add a Book</string>
+    <string name="menu_about">About</string>
+    <string name="sub_menu_home">Show all books</string>
+    <string name="sub_menu_add_book">Enter ISBN or scan UPC</string>
+    <string name="dialog_search_title">Enter Search Word</string>
+    <string name="dialog_ok">OK</string>
+    <string name="dialog_cancel">Cancel</string>
+    <string name="scan_instruction">Scan a barcode</string>
+
+    <!--Error Messages-->
+    <string name="no_books_found">No Books Found in the Database</string>
+    <string name="no_internet_connection">No Internet Connection</string>
+    <string name="no_response_from_server">No Response From Server</string>
+
+    <string name="error_closing_stream">Error closing stream</string>
+    <string name="error_tag">"Error "</string>
+    <string name="error_unknown_uri">"Unknown uri: "</string>
+    <string name="error_failed_to_insert">"Failed to insert row into "</string>
+
+    <!--JSON Tags - Do Not Translate-->
+    <string name="json_items" translatable="false" >items</string>
+    <string name="json_volume_info" translatable="false" >volumeInfo</string>
+    <string name="json_title" translatable="false" >title</string>
+    <string name="json_subtitle" translatable="false" >subtitle</string>
+    <string name="json_authors" translatable="false" >authors</string>
+    <string name="json_description" translatable="false" >description</string>
+    <string name="json_categories" translatable="false" >categories</string>
+    <string name="json_image_links" translatable="false" >imageLinks</string>
+    <string name="json_thumbnail" translatable="false" >thumbnail</string>
+
+    <!--Google API strings - Do Not Translate-->
+    <string name="google_api_books" translatable="false" >https://www.googleapis.com/books/v1/volumes?</string>
+    <string name="google_api_query" translatable="false" >q</string>
+    <string name="google_api_isbn" translatable="false" >isbn:</string>
+    <string name="request_method" translatable="false" >GET</string>
+    <string name="new_line" translatable="false" >\n</string>
+</resources>

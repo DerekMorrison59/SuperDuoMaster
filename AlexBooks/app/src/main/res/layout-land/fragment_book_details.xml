@@ -1,0 +1,119 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingTop="10dp"
+    tools:context="com.derekmorrison.alexbooks.BookDetailsFragment"
+    tools:showIn="@layout/activity_book_details"
+    android:paddingRight="@dimen/activity_horizontal_margin">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:elevation="@dimen/card_elevation"
+        android:background="@color/colorCardBackground"
+        android:orientation="vertical"
+        android:layout_weight=".88">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight=".4">
+            <!--Book Cover Image-->
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="80dp"
+                android:layout_height="match_parent"
+                android:gravity="start">
+
+                <ImageView
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:id="@+id/fullBookCover"
+                    android:contentDescription="@string/book_cover"
+                    android:src="@drawable/alex_logo"
+                    android:scaleType="fitXY"/>
+            </LinearLayout>
+
+            <!--Book Title, subTitle, Author, catagory-->
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginLeft="20dp">
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/fullBookTitle"
+                    android:textSize="@dimen/book_title"
+                    android:textIsSelectable="true"
+                    android:textStyle="bold"  />
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/authors"
+                    android:textSize="@dimen/text_author"
+                    android:textStyle="bold"
+                    android:layout_marginTop="4dp" />
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:textSize="@dimen/text_category"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/categories"
+                    android:layout_marginTop="6dp" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <!--Book Description-->
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight=".75"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="12dp">
+
+            <ScrollView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent">
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/fullBookDesc"
+                    android:ellipsize="end"
+                    android:layout_margin="0dp"
+                    android:textSize="16sp"
+                    android:scrollIndicators="end"
+                    android:padding="12dp" />
+            </ScrollView>
+        </LinearLayout>
+    </LinearLayout>
+
+        <!--Delete Button-->
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:gravity="end"
+            android:layout_weight=".12">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/delete"
+                style="?android:attr/buttonBarButtonStyle"
+                android:id="@+id/delete_button"
+                android:drawableLeft="@drawable/ic_delete_black_24dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="0dp" />
+        </LinearLayout>
+</LinearLayout>

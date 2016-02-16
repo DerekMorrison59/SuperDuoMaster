@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context="com.derekmorrison.alexbooks.BookAdd">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+    </android.support.design.widget.AppBarLayout>
+
+    <FrameLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin" >
+
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:focusableInTouchMode="true"
+            android:layout_gravity="center_horizontal|top">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight=".35">
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="0dp"
+                android:id="@+id/eancontainer"
+                android:layout_height="fill_parent"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_weight=".7"
+                android:gravity="bottom|end">
+
+                <EditText
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:minEms="@integer/ean_width"
+                    android:id="@+id/ean"
+                    android:saveEnabled="true"
+                    android:maxLength="@integer/ean_size"
+                    android:maxLines="1"
+                    android:hint="@string/input_hint"
+                    android:gravity="center_horizontal"
+                    android:textSize="@dimen/text_ISBN" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight=".3">
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="0dp"
+                android:layout_weight=".65"
+                android:layout_marginTop="30dp">
+                <!--Book Cover Image-->
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="90dp"
+                    android:layout_height="match_parent"
+                    android:gravity="start">
+
+                    <ImageView
+                        android:layout_width="fill_parent"
+                        android:layout_height="160dp"
+                        android:id="@+id/bookCover"
+                        android:contentDescription="@string/book_cover"
+                        android:scaleType="fitXY"/>
+                </LinearLayout>
+
+                <!--Book Title, subTitle, Author, catagory-->
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="20dp">
+
+                    <TextView
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/bookTitle"
+                        android:textSize="@dimen/book_title"
+                        android:textIsSelectable="true"
+                        android:textStyle="bold"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/bookSubTitle"
+                        android:textSize="@dimen/text_book_subtitle"
+                        android:layout_marginTop="6dp"
+                        android:maxLines="3"
+                        android:ellipsize="end"
+                        />
+
+                    <TextView
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/authors"
+                        android:textSize="@dimen/text_author"
+                        android:textStyle="bold"
+                        android:layout_marginTop="12dp" />
+
+                    <TextView
+                        android:layout_width="fill_parent"
+                        android:textSize="@dimen/text_category"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/categories"
+                        android:layout_marginTop="20dp" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="110dp"
+                    android:layout_height="fill_parent"
+                    android:gravity="left">
+
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/button_delete"
+                        style="?android:attr/buttonBarButtonStyle"
+                        android:id="@+id/delete_button"
+                        android:drawableLeft="@drawable/ic_delete_black_24dp"
+                        android:visibility="invisible" />
+
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/button_save"
+                        android:visibility="invisible"
+                        android:id="@+id/save_button"
+                        android:drawableLeft="@drawable/ic_save_black_24dp"
+                        style="?android:attr/buttonBarButtonStyle" />
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+        </LinearLayout>
+    </FrameLayout>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_scan_book"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/fab_margin"
+        android:src="@drawable/barcode_scanner" />
+
+</android.support.design.widget.CoordinatorLayout>

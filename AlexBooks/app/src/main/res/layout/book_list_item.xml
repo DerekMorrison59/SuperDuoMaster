@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="fill_parent"
+    android:layout_height="120dp"
+    android:focusable="false"
+    android:focusableInTouchMode="false"
+    android:background="@color/colorCardBackground"
+    android:elevation="@dimen/card_elevation">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="90dp"
+        android:layout_height="match_parent"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:gravity="center">
+        <ImageView
+            android:id="@+id/fullBookCover"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:contentDescription="@string/book_cover_description"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:src="@drawable/alex_logo"
+            android:scaleType="fitXY" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:layout_marginLeft="12dp">
+
+    <TextView
+        android:id="@+id/listBookTitle"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:layout_marginRight="10dp"
+        android:layout_marginEnd="10dp"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:textSize="@dimen/book_title"
+        android:textIsSelectable="false"/>
+
+
+    <TextView
+        android:id="@+id/listBookSubTitle"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:singleLine="true"
+        android:textSize="@dimen/abc_text_size_small_material"
+        android:ellipsize="end"
+        android:layout_marginRight="10dp"
+        android:layout_marginEnd="10dp"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:textIsSelectable="false"
+        android:layout_marginTop="4dp"
+        android:maxLines="1" />
+    </LinearLayout>
+
+</LinearLayout>
