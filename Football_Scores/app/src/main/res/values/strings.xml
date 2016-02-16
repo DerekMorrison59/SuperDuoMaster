@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Football Scores</string>
+    <string name="action_settings">Settings</string>
+    <string name="test_text">Test</string>
+    <string name="today">Today</string>
+    <string name="yesterday">Yesterday</string>
+    <string name="tomorrow">Tomorrow</string>
+
+    <string name="champions_league" translatable="false">UEFA Champions League</string>
+    <string name="bundesliga1" translatable="false">Bundesliga 1</string>
+    <string name="bundesliga2" translatable="false">Bundesliga 2</string>
+    <string name="bundesliga3" translatable="false">Bundesliga 3</string>
+    <string name="premierleague" translatable="false">Premier League</string>
+    <string name="primeradivison" translatable="false">Primera Division</string>
+    <string name="seriaa" translatable="false">Serie A</string>
+    <string name="eredivise" translatable="false">Eredivise</string>
+    <string name="primera_liga" translatable="false">Primera Liga</string>
+    <string name="segunda_division" translatable="false">Segunda Division</string>
+    <string name="ligue2" translatable="false">Ligue 2</string>
+    <string name="ligue1" translatable="false">Ligue 1</string>
+
+    <string name="matchday_text">Match day</string>
+
+    <string name="group_stage_text">Group stages</string>
+    <string name="first_knockout_round">First knockout round</string>
+    <string name="quarter_final">Quarter Final</string>
+    <string name="semi_final">Semi Final</string>
+    <string name="final_text">Final</string>
+
+    <string name="share_text">Share</string>
+    <string name="about">About</string>
+    <string name="title_activity_about">About Football Scores</string>
+    <string name="about_text">
+        This Application gets Football Match Scores for the Premier League, Seria A, Eredivise,
+        Primera Liga, Segunda Division, Ligue 1 and 2, Bundesliga 1 2 and 3, Primera Division
+        and the UEFA Champions League.
+        All Match data is retrieved from the football-data.org free API.
+        All team Logos were acquired from http://hdlogo.wordpress.com/ upon requesting permission form the owner.
+        The original version of this app was created by Yahia Khalid Ibn El Walid Ahmed, and a modified version
+        is given to students in the Udacity Android Nanodegree program.
+        To report any bugs or suggestions do not hesitate to send a mail to y.k.ibnelwalid@gmail.com.
+
+        During the off season, when no real match data is available, fake data will be displayed by the app.
+    </string>
+    <string name="widget_text">This is a widget probably.</string>
+    <string name="api_key" translatable="false" >API KEY</string>
+    <string name="dummy_data" translatable="false" >{\"timeFrameStart\":\"2015-06-18\",\"timeFrameEnd\":\"2015-06-19\",\"count\":1,\"fixtures\":[{\"_links\":{\"self\":{\"href\":\"http://api.football-data.org/alpha/fixtures/140514\"},\"soccerseason\":{\"href\":\"http://api.football-data.org/alpha/soccerseasons/357\"},\"homeTeam\":{\"href\":\"http://api.football-data.org/alpha/teams/275\"},\"awayTeam\":{\"href\":\"http://api.football-data.org/alpha/teams/263\"}},\"date\":\"2015-06-19T22:00:00Z\",\"status\":\"FINISHED\",\"matchday\":42,\"homeTeamName\":\"TESTING1\",\"awayTeamName\":\"TESTING2\",\"result\":{\"goalsHomeTeam\":2,\"goalsAwayTeam\":4}},{\"_links\":{\"self\":{\"href\":\"http://api.football-data.org/alpha/fixtures/140514\"},\"soccerseason\":{\"href\":\"http://api.football-data.org/alpha/soccerseasons/357\"},\"homeTeam\":{\"href\":\"http://api.football-data.org/alpha/teams/275\"},\"awayTeam\":{\"href\":\"http://api.football-data.org/alpha/teams/263\"}},\"date\":\"2015-06-19T22:00:00Z\",\"status\":\"FINISHED\",\"matchday\":42,\"homeTeamName\":\"TESTING1\",\"awayTeamName\":\"TESTING2\",\"result\":{\"goalsHomeTeam\":2,\"goalsAwayTeam\":4}},{\"_links\":{\"self\":{\"href\":\"http://api.football-data.org/alpha/fixtures/140514\"},\"soccerseason\":{\"href\":\"http://api.football-data.org/alpha/soccerseasons/357\"},\"homeTeam\":{\"href\":\"http://api.football-data.org/alpha/teams/275\"},\"awayTeam\":{\"href\":\"http://api.football-data.org/alpha/teams/263\"}},\"date\":\"2015-06-19T22:00:00Z\",\"status\":\"FINISHED\",\"matchday\":42,\"homeTeamName\":\"TESTING1\",\"awayTeamName\":\"TESTING2\",\"result\":{\"goalsHomeTeam\":2,\"goalsAwayTeam\":4}},{\"_links\":{\"self\":{\"href\":\"http://api.football-data.org/alpha/fixtures/140514\"},\"soccerseason\":{\"href\":\"http://api.football-data.org/alpha/soccerseasons/357\"},\"homeTeam\":{\"href\":\"http://api.football-data.org/alpha/teams/275\"},\"awayTeam\":{\"href\":\"http://api.football-data.org/alpha/teams/263\"}},\"date\":\"2015-06-19T22:00:00Z\",\"status\":\"FINISHED\",\"matchday\":42,\"homeTeamName\":\"TESTING1\",\"awayTeamName\":\"TESTING2\",\"result\":{\"goalsHomeTeam\":2,\"goalsAwayTeam\":4}},{\"_links\":{\"self\":{\"href\":\"http://api.football-data.org/alpha/fixtures/140514\"},\"soccerseason\":{\"href\":\"http://api.football-data.org/alpha/soccerseasons/357\"},\"homeTeam\":{\"href\":\"http://api.football-data.org/alpha/teams/275\"},\"awayTeam\":{\"href\":\"http://api.football-data.org/alpha/teams/263\"}},\"date\":\"2015-06-19T22:00:00Z\",\"status\":\"FINISHED\",\"matchday\":42,\"homeTeamName\":\"TESTING1\",\"awayTeamName\":\"TESTING2\",\"result\":{\"goalsHomeTeam\":2,\"goalsAwayTeam\":4}}]}</string>
+    <string name="home_team_crest">Home Team Crest</string>
+    <string name="away_team_crest">Away Team Crest</string>
+    <string name="score">Score</string>
+    <string name="start_time">Start Time</string>
+    <string name="home_team_name">Home Team Name</string>
+    <string name="away_team_name">Away Team Name</string>
+    <string name="unknown_league_error_msg">Unknown League. Please report</string>
+    <string name="group_stages_6">Group Stages, Matchday : </string>
+    <string name="matchday">"Matchday : "</string>
+    <string name="select_match_day">Select Match Day</string>
+
+    <!-- Strings related to Widgets -->
+    <string name="title_widget_today">Football Scores Today</string>
+    <string name="title_widget_detail">Football Score Details</string>
+
+    <string name="next_game">Next Match</string>
+    <string name="match_info">Match Information</string>
+    <string name="future_start_time">start time</string>
+    <string name="home">Home</string>
+    <string name="away">Away</string>
+    <string name="no_matches_available">No Matches Available</string>
+    <string name="no_scores_available">No scores available yet</string>
+    <string name="scores_hashtag"> #Football_Scores </string>
+    <string name="unknown">Unknown</string>
+    <string name="action_refresh">Refresh</string>
+    <string name="football_scores_icon">Football Scores Icon</string>
+    <string name="next_football_match">Next Football Match</string>
+    <string name="dummy">dummy</string>
+    <string name="about_label">About</string>
+    <string name="key_pager_fragment">PagerFragment</string>
+    <string name="key_current_pager">Pager_Current</string>
+    <string name="key_selected_match">Selected_match</string>
+
+    <!--error messages-->
+    <string name="error_unknown_uri">Unknown uri :</string>
+    <string name="error_during_fetch">"Exception during fetch: "</string>
+    <string name="error_closing_stream">Error Closing Stream</string>
+    <string name="error_parse_date">"Exception parsing date! "</string>
+    <string name="error_could_not_connect">Could not connect to server.</string>
+    <string name="no_internet_connection">No Internet Connection</string>
+
+    <!--date format strings-->
+    <string name="date_format_string">yyyy-MM-dd</string>
+    <string name="date_string_format_to_minutes">yyyy-MM-dd:HH:mm</string>
+    <string name="date_string_format_to_seconds">yyyy-MM-ddHH:mm:ss</string>
+
+    <!--JSON strings - DO NOT TRANSLATE-->
+    <string name="json_season_link" translatable="false" >http://api.football-data.org/alpha/soccerseasons/</string>
+    <string name="json_match_link" translatable="false" >http://api.football-data.org/alpha/fixtures/</string>
+    <string name="json_links" translatable="false" >_links</string>
+    <string name="json_soccerseason" translatable="false" >soccerseason</string>
+    <string name="json_self" translatable="false" >self</string>
+    <string name="json_match_date" translatable="false" >date</string>
+    <string name="json_home_team" translatable="false" >homeTeamName</string>
+    <string name="json_away_team" translatable="false" >awayTeamName</string>
+    <string name="json_result" translatable="false" >result</string>
+    <string name="json_goals_home" translatable="false" >goalsHomeTeam</string>
+    <string name="json_goals_away" translatable="false" >goalsAwayTeam</string>
+    <string name="json_matchday" translatable="false" >matchday</string>
+</resources>
