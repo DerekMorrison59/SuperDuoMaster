@@ -9,6 +9,7 @@ import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.widget.ShareActionProvider;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -86,6 +87,7 @@ public class BookDetailsFragment extends Fragment implements LoaderManager.Loade
                 bookIntent.setAction(BookService.DELETE_BOOK);
                 getActivity().startService(bookIntent);
 
+                // return the UI to the state before the details were displayed
                 getActivity().onBackPressed();
             }
         });
@@ -95,7 +97,6 @@ public class BookDetailsFragment extends Fragment implements LoaderManager.Loade
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        final String intentType = "text/plain";
 
         inflater.inflate(R.menu.menu_book_details, menu);
 
@@ -104,16 +105,21 @@ public class BookDetailsFragment extends Fragment implements LoaderManager.Loade
 
         // moved here to ensure that this code is executed - onLoadFinished was being called before this method
         // so the share intent was not being created
-        if (null != mShareActionProvider) {
-
-            //Log.v(LOG_TAG, "onCreateOptionsMenu = bookTitle: " + bookTitle);
-
-            Intent shareIntent = new Intent(Intent.ACTION_SEND);
-            shareIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_DOCUMENT);
-            shareIntent.setType(intentType);
-            shareIntent.putExtra(Intent.EXTRA_TEXT, getString(R.string.share_text) + " " + bookTitle);
-            mShareActionProvider.setShareIntent(shareIntent);
+        if (null != mShareActionProvider && null != bookTitle) {
+            updateShareIntent();
+            Log.v(LOG_TAG, "onCreateOptionsMenu = bookTitle: " + bookTitle);
         }
+    }
+
+    private void updateShareIntent() {
+        Log.v(LOG_TAG, "updateShareIntent = bookTitle: " + bookTitle);
+
+        final String intentType = "text/plain";
+        Intent shareIntent = new Intent(Intent.ACTION_SEND);
+        shareIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_DOCUMENT);
+        shareIntent.setType(intentType);
+        shareIntent.putExtra(Intent.EXTRA_TEXT, getString(R.string.share_text) + " " + bookTitle);
+        mShareActionProvider.setShareIntent(shareIntent);
     }
 
     @Override
@@ -134,7 +140,7 @@ public class BookDetailsFragment extends Fragment implements LoaderManager.Loade
     @Override
     public void onLoadFinished(android.support.v4.content.Loader<Cursor> loader, Cursor data) {
 
-        //Log.v(LOG_TAG, "onLoadFinished at the TOP: ");
+        Log.v(LOG_TAG, "onLoadFinished at the TOP " );
 
         if (!data.moveToFirst()) {
             return;
@@ -142,6 +148,11 @@ public class BookDetailsFragment extends Fragment implements LoaderManager.Loade
 
         bookTitle = data.getString(data.getColumnIndex(AlexandriaContract.BookEntry.TITLE));
         ((TextView) rootView.findViewById(R.id.fullBookTitle)).setText(bookTitle);
+
+        if (null != mShareActionProvider && null != bookTitle) {
+            updateShareIntent();
+            Log.v(LOG_TAG, "onLoadFinished bookTitle = " + bookTitle);
+        }
 
         // removed because there is seldom a subTitle and the blank space does not look good
         //String bookSubTitle = data.getString(data.getColumnIndex(AlexandriaContract.BookEntry.SUBTITLE));
@@ -151,9 +162,15 @@ public class BookDetailsFragment extends Fragment implements LoaderManager.Loade
         ((TextView) rootView.findViewById(R.id.fullBookDesc)).setText(desc);
 
         String authors = data.getString(data.getColumnIndex(AlexandriaContract.AuthorEntry.AUTHOR));
-        String[] authorsArr = authors.split(",");
-        ((TextView) rootView.findViewById(R.id.authors)).setLines(authorsArr.length);
-        ((TextView) rootView.findViewById(R.id.authors)).setText(authors.replace(",","\n"));
+
+        // Bug Fix: Check to make sure the 'authors' field returned from google is not null
+        if (null != authors) {
+            String[] authorsArr = authors.split(",");
+            ((TextView) rootView.findViewById(R.id.authors)).setLines(authorsArr.length);
+            ((TextView) rootView.findViewById(R.id.authors)).setText(authors.replace(",", "\n"));
+        } else{
+            ((TextView) rootView.findViewById(R.id.authors)).setText(R.string.no_author_provided);
+        }
 
         String imgUrl = data.getString(data.getColumnIndex(AlexandriaContract.BookEntry.IMAGE_URL));
         if(Patterns.WEB_URL.matcher(imgUrl).matches()){

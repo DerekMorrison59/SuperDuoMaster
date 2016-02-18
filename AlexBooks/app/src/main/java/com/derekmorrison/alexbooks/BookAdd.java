@@ -177,9 +177,16 @@ public class BookAdd extends AppCompatActivity  implements LoaderManager.LoaderC
         ((TextView) findViewById(R.id.bookSubTitle)).setText(bookSubTitle);
 
         String authors = data.getString(data.getColumnIndex(AlexandriaContract.AuthorEntry.AUTHOR));
-        String[] authorsArr = authors.split(",");
-        ((TextView) findViewById(R.id.authors)).setLines(authorsArr.length);
-        ((TextView) findViewById(R.id.authors)).setText(authors.replace(",","\n"));
+
+        // Bug Fix: Check to make sure the 'authors' field returned from google is not null
+        if (null != authors) {
+            String[] authorsArr = authors.split(",");
+            ((TextView) findViewById(R.id.authors)).setLines(authorsArr.length);
+            ((TextView) findViewById(R.id.authors)).setText(authors.replace(",", "\n"));
+        } else {
+            ((TextView) findViewById(R.id.authors)).setText(R.string.no_author_provided);
+        }
+
         String imgUrl = data.getString(data.getColumnIndex(AlexandriaContract.BookEntry.IMAGE_URL));
 
         // use Picasso to handle the book cover images

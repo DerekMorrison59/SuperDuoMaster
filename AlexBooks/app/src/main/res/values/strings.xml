@@ -52,6 +52,7 @@
     <string name="error_tag">"Error "</string>
     <string name="error_unknown_uri">"Unknown uri: "</string>
     <string name="error_failed_to_insert">"Failed to insert row into "</string>
+    <string name="no_author_provided">No Author Provided</string>
 
     <!--JSON Tags - Do Not Translate-->
     <string name="json_items" translatable="false" >items</string>
